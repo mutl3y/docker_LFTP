@@ -8,7 +8,7 @@ WORKDIR /data
 
 ARG version
 
-RUN latest=${version :-`curl --silent ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/|awk '{ print $9 }' |grep -e  '.*.gz$'|tail -1` } \
+RUN latest=${version:-`curl --silent ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/|awk '{ print $9 }' |grep -e  '.*.gz$'|tail -1` } \
     && curl --silent -OL ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/$latest \
     && tar -zxf * && rm -f $latest && cd * \
     && ./configure >/dev/null && make >/dev/null  && make install >/dev/null \
