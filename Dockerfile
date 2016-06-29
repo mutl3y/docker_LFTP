@@ -5,7 +5,7 @@ LABEL Description="This image is used to build and install lftp from source"
 RUN yum group install -y "Development Tools" && yum install -y ncurses-devel readline-devel gnutls-devel
 WORKDIR /data
 
-ARG version
+ARG version=lftp-4.7.2.tar.gz
 
 RUN latest=${version:-`curl --silent ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/|awk '{ print $9 }' |grep -e  '.*.gz$'|tail -1` } \
     && curl --silent -OL ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/$latest \
