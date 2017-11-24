@@ -2,14 +2,13 @@ FROM centos:latest
 MAINTAINER mutl3y <docker@heynes.biz>
 LABEL Description="This image is used to build and install lftp from source"
 
-RUN yum group install -y "Development Tools" && yum install -y ncurses-devel readline-devel gnutls-devel
+RUN yum group install -y "Development Tools" && yum install -y ncurses-devel readline-devel gnutls-devel git
 WORKDIR /data
 
 ARG version
 
-RUN latest=${version:-`curl --silent ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/|awk '{ print $9 }' |grep -e  '.*.gz$'|tail -1` } \
-    && curl --silent -OL ftp://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/$latest \
-    && tar -zxf * && rm -f $latest && cd * \
+RUN git clone https://github.com/lavv17/lftp.git \
+    && cd * \
     && ./configure >/dev/null && make >/dev/null  && make install >/dev/null
 
 # Cleanup
