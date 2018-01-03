@@ -15,4 +15,4 @@ LFTP is free software, distributed under the GNU GPL license
     
 ### Please Visit [Developers website](https://lftp.yar.ru ) for further information
 
-### Documentation is available [here](https://lftp.yar.ru/lftp-man.html)
+### Documentation is available [here](https://lftp.yar.ru/lftp-man.html).
